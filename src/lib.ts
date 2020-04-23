@@ -64,13 +64,11 @@ Object.prototype.let = function(logic: (it: Object) => any): any {
  * @param none Logic to invoke if no condition is met
  * @returns void
  */
-Object.prototype.when = function(logic: {}, none: () => void = null): void {
-	// NOTE: need to be more explicit about logic type (keys are any and values are CallableFunction)
+Object.prototype.when = function(logic: {property: CallableFunction}, none: () => void = null): void {
 	const condition = Object.keys(logic)
 	for(let x = 0; x < condition.length; x ++) {
 		if(condition[x] == this) {
-			if(typeof logic[condition[x]] == "function") logic[condition[x]]()
-			// NOTE: shouldn't have to perform this type check
+			logic[condition[x]]()
 			return
 		}
 	}
@@ -187,14 +185,11 @@ class Colour {
 	 * @returns string
 	 */
 	toHex(): string {
-		return (function(value: number) {
-			return Number(value).toString(16).let((it: string) => {
-				if(it.length < 2) it = "0" + it
-				return it
-			})
-		}).let((it: CallableFunction) => {
-			return ("#" + it(this.r) + it(this.g) + it(this.b)).toUpperCase()
-		})
+		return ((value: number) => {
+			let result = Number(value).toString(16)
+			if(result.length < 2) result = "0" + result
+			return result
+		}).let((it: CallableFunction) => ("#" + it(this.r) + it(this.g) + it(this.b)).toUpperCase())
 	}
 }
 
