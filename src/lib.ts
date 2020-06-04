@@ -192,6 +192,28 @@ class Colour {
 	}
 }
 
+/** 
+ * 2D Size Data
+ */
+class Dimension2D {
+	width: number
+	height: number
+
+	constructor(width: number, height: number) {
+		this.width = width
+		this.height = height
+	}
+
+	/**
+	 * Provides string of dimension data
+	 *
+	 * @returns string
+	 */
+	toString(): string {
+		return `{width: ${this.width}, height: ${this.height}}`
+	}
+}
+
 /**
  * Map of Key / Value Entries
  */
