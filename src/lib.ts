@@ -22,9 +22,8 @@ Number.prototype.isInteger = function(): boolean {
  * @returns string
  */
 Number.prototype.toPaddedString = function(count: number): string {
-	let result = this.toString()
-	result = "0".repeat(count - result.length) + result
-	return result
+	const result = this.toString()
+	return "0".repeat(count - result.length) + result
 }
 
 /**
