@@ -1,4 +1,31 @@
 /**
+ * Array Extension
+ */
+declare interface Array<T> {
+	windowed(size: number): Array<Array<T>>
+}
+
+/**
+ * Converts array into multiple arrays of elements
+ *
+ * @param size The size of each window
+ * @returns Array
+ */
+Array.prototype.windowed = function(size: number): Array<Array<any>> {
+	const result = []
+	let window = []
+	for(let x = 0; x < this.length; x ++) {
+		if(window.length == size) {
+			result.push(window)
+			window = []
+		}
+		window.push(this[x])
+	}
+	result.push(window)
+	return result
+}
+
+/**
  * Number Extension
  */
 declare interface Number {
