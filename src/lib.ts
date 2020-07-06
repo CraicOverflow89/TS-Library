@@ -145,6 +145,22 @@ String.prototype.startsWith = function(value: string): boolean {
 }
 
 /**
+ * Window Extension
+ */
+declare interface Window {
+	innerSize: () => Dimension2D
+}
+
+/**
+ * Fetches current window size
+ *
+ * @returns Dimension2D
+ */
+Window.prototype.innerSize = function(): Dimension2D {
+	return new Dimension2D(window.innerWidth, window.innerHeight)
+}
+
+/**
  * Bound Property Data
  */
 class BoundProperty<T> {
@@ -329,6 +345,24 @@ class Point2D {
 	constructor(x: number, y: number) {
 		this.x = x
 		this.y = y
+	}
+
+	/**
+	 * Provides string of point data
+	 *
+	 * @returns string
+	 */
+	toString(): string {
+		return `{x: ${this.x}, y: ${this.y}, z: ${this.z}}`
+	}
+
+	/**
+	 * Provides string of point data
+	 *
+	 * @returns string
+	 */
+	toString(): string {
+		return `{x: ${this.x}, y: ${this.y}}`
 	}
 }
 
