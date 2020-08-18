@@ -287,6 +287,30 @@ class Dimension2D {
 	}
 }
 
+/** 
+ * 3D Size Data
+ */
+class Dimension3D {
+	width: number
+	height: number
+	depth: number
+
+	constructor(width: number, height: number, depth: number) {
+		this.width = width
+		this.height = height
+		this.depth = depth
+	}
+
+	/**
+	 * Provides string of dimension data
+	 *
+	 * @returns string
+	 */
+	toString(): string {
+		return `{width: ${this.width}, height: ${this.height}, depth: ${this.depth}}`
+	}
+}
+
 /**
  * Map of Key / Value Entries
  */
