@@ -396,15 +396,6 @@ class Point2D {
 	 * @returns string
 	 */
 	toString(): string {
-		return `{x: ${this.x}, y: ${this.y}, z: ${this.z}}`
-	}
-
-	/**
-	 * Provides string of point data
-	 *
-	 * @returns string
-	 */
-	toString(): string {
 		return `{x: ${this.x}, y: ${this.y}}`
 	}
 }
@@ -421,6 +412,15 @@ class Point3D {
 		this.x = x
 		this.y = y
 		this.z = z
+	}
+
+	/**
+	 * Provides string of point data
+	 *
+	 * @returns string
+	 */
+	toString(): string {
+		return `{x: ${this.x}, y: ${this.y}, z: ${this.z}}`
 	}
 }
 
