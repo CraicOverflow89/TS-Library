@@ -2,7 +2,37 @@
  * Array Extension
  */
 declare interface Array<T> {
+	partition(logic: (element: T) => boolean): Pair<Array<T>, Array<T>>
+	remove(object: T): boolean
 	windowed(size: number): Array<Array<T>>
+}
+
+/**
+ * Partitions an array into a pair of arrays based on a predicate
+ *
+ * @param logic The logic that returns true/false to determine first/second allocation
+ * @returns Pair<Array, Array>
+ */
+Array.prototype.partition = function(logic: (element: any) => boolean) {
+	const first = []
+	const second = []
+	for(let x = 0; x < this.length; x ++) {
+		logic(this[x]) ? first.push(this[x]) : second.push(this[x])
+	}
+	return new Pair(first, second)
+}
+
+/**
+ * Removes an element from the array
+ *
+ * @param object The element to remove
+ * @returns boolean Success of removal
+ */
+Array.prototype.remove = function(object: any): boolean {
+	const index = this.indexOf(object)
+	if(index < 0) return false
+	this.splice(index, 1)
+	return true
 }
 
 /**
@@ -332,6 +362,19 @@ class HashMap<T> {
 			result.push(logic(keys[x], this.data[keys[x]]))
 		}
 		return result
+	}
+}
+
+/**
+ * Pair Data
+ */
+class Pair<T1, T2> {
+	first: T1
+	second: T2
+
+	constructor(first: T1, second: T2) {
+		this.first = first
+		this.second = second
 	}
 }
 
