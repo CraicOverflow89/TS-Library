@@ -158,10 +158,7 @@ String.prototype.endsWith = function(value: string): boolean {
  */
 String.prototype.repeat = function(count: number): string {
 	if(count < 1 || !count.isInteger()) return ""
-	let result = this
-	let x = 0
-	while(++ x < count) result += result
-	return result
+	return Array(count).join(this)
 }
 
 /**
