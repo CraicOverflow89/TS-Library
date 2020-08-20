@@ -2,9 +2,36 @@
  * Array Extension
  */
 declare interface Array<T> {
+	first(logic: (element: T) => boolean): T
+	forEachBreakable(logic: (element: T) => boolean): void
 	partition(logic: (element: T) => boolean): Pair<Array<T>, Array<T>>
 	remove(object: T): boolean
 	windowed(size: number): Array<Array<T>>
+}
+
+/**
+ * Fetches the first element in an array matching a predicate or null
+ *
+ * @param logic The logic to match against an element
+ * @returns T
+ */
+Array.prototype.first = function(logic: (element: any) => boolean) {
+	for(let x = 0; x < this.length; x ++) {
+		if(logic(this[x])) return this[x]
+	}
+	return null
+}
+
+/**
+ * Executes logic against each element in an array providing true is returned each time
+ *
+ * @param logic The logic to execute (returns true to continue the loop)
+ * @returns void
+ */
+Array.prototype.forEachBreakable = function(logic: (element: any) => boolean) {
+	for(let x = 0; x < this.length; x ++) {
+		if(!logic(this[x])) return
+	}
 }
 
 /**
