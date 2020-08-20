@@ -312,7 +312,7 @@ class Dimension3D {
  * Map of Key / Value Entries
  */
 class HashMap<T> {
-	data: {} = {}
+	data: {[key: string]: T} = {}
 
 	/**
 	 * Clears all data in the map
