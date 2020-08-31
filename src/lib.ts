@@ -2,11 +2,24 @@
  * Array Extension
  */
 declare interface Array<T> {
+	drop(count: number): Array<T>
 	first(logic: (element: T) => boolean): T
 	forEachBreakable(logic: (element: T) => boolean): void
 	partition(logic: (element: T) => boolean): Pair<Array<T>, Array<T>>
 	remove(object: T): boolean
+	take(count: number): Array<T>
 	windowed(size: number): Array<Array<T>>
+}
+
+/**
+ * Drops an amount of elements from an array
+ *
+ * @param count The amount of elements to drop
+ * @returns Array<T>
+ */
+Array.prototype.drop = function(count: number) {
+	if(count < 1 || !Number.isInteger(count)) return []
+	return this.slice(count)
 }
 
 /**
@@ -60,6 +73,17 @@ Array.prototype.remove = function(object: any): boolean {
 	if(index < 0) return false
 	this.splice(index, 1)
 	return true
+}
+
+/**
+ * Takes an amount of elements from an array
+ *
+ * @param count The amount of elements to take
+ * @returns Array<T>
+ */
+Array.prototype.take = function(count: number) {
+	if(count < 1 || !Number.isInteger(count)) return []
+	return this.slice(0, count)
 }
 
 /**
