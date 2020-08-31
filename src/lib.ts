@@ -86,17 +86,20 @@ Array.prototype.windowed = function(size: number): Array<Array<any>> {
  * Number Extension
  */
 declare interface Number {
-	isInteger(): boolean
 	toPaddedString(count: number): string
+}
+declare interface NumberConstructor {
+	isInteger(value: number): boolean
 }
 
 /**
  * Determines if a number is an integer
  *
+ * @param value The number to check
  * @returns boolean
  */
-Number.prototype.isInteger = function(): boolean {
-	return typeof this === "number" && isFinite(this) && Math.floor(this) === this
+Number.isInteger = function(value: number): boolean {
+	return typeof value === "number" && isFinite(value) && Math.floor(value) === value
 }
 
 /**
@@ -184,7 +187,7 @@ String.prototype.endsWith = function(value: string): boolean {
  * @returns string
  */
 String.prototype.repeat = function(count: number): string {
-	if(count < 1 || !count.isInteger()) return ""
+	if(count < 1 || !Number.isInteger(count)) return ""
 	return Array(count).join(this)
 }
 
