@@ -191,6 +191,7 @@ Object.prototype.when = function(logic: {property: CallableFunction}, none: () =
 declare interface String {
 	endsWith(value: string): boolean
 	repeat(count: number): string
+	splitPopulated(delimiter: string): Array<string>
 	startsWith(value: string): boolean
 }
 
@@ -213,6 +214,18 @@ String.prototype.endsWith = function(value: string): boolean {
 String.prototype.repeat = function(count: number): string {
 	if(count < 1 || !Number.isInteger(count)) return ""
 	return Array(count).join(this)
+}
+
+/**
+ * Splits a string into a list based on a delimeter ignoring empty strings
+ *
+ * @param delimiter The string to split on
+ * @returns Array<string>
+ */
+String.prototype.splitPopulated = function(delimiter: string) {
+	const result = this.split(delimiter)
+	if(result.length == 1 && result[0] == "") return []
+	return result
 }
 
 /**
