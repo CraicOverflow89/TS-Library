@@ -107,6 +107,52 @@ Array.prototype.windowed = function(size: number): Array<Array<any>> {
 }
 
 /**
+ * HTMLElement Extension
+ */
+declare interface HTMLElement {
+	addClass(value: string): void
+	getClassArray(): Array<string>
+	removeClass(value: string): void
+}
+
+/**
+ * Adds a class to the element
+ *
+ * @param value The class to add
+ * @returns void
+ */
+HTMLElement.prototype.addClass = function(value: string) {
+	const classList = this.getClassArray()
+	if(classList.indexOf(value) < 0) {
+		classList.push(value)
+	}
+	this.className = classList.join(" ")
+}
+
+/**
+ * Gets classes associated with an element
+ *
+ * @returns Array<string>
+ */
+HTMLElement.prototype.getClassArray = function() {
+	return this.className.splitPopulated(" ")
+}
+
+/**
+ * Removes a class from the element
+ *
+ * @param value The class to remove
+ * @returns void
+ */
+HTMLElement.prototype.removeClass = function(value: string) {
+	const classList = this.getClassArray()
+	if(classList.indexOf(value) > -1) {
+		classList.remove(value)
+	}
+	this.className = classList.join(" ")
+}
+
+/**
  * Number Extension
  */
 declare interface Number {
