@@ -235,10 +235,21 @@ Object.prototype.when = function(logic: {property: CallableFunction}, none: () =
  * String Extension
  */
 declare interface String {
+	contains(value: string): boolean
 	endsWith(value: string): boolean
 	repeat(count: number): string
 	splitPopulated(delimiter: string): Array<string>
 	startsWith(value: string): boolean
+}
+
+/**
+ * Determines if a string contains a substring
+ *
+ * @param value The substring to check for inside of the string
+ * @returns boolean
+ */
+String.prototype.contains = function(value: string): boolean {
+	return this.indexOf(value) > -1
 }
 
 /**
